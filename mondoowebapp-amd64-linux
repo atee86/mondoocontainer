@@ -4,11 +4,11 @@ FROM alpine:latest
 WORKDIR /app
 
 # Copy the built Go binary from the builder stage
-COPY bin/mondoowebapp-amd64-linux /app
+COPY bin/mondoowebapp-amd64-alpine /app
 
 # Expose the port the application runs on
 EXPOSE 80
 
 # Command to run the Go application
-CMD ["./mondoowebapp-amd64-linux"]
+CMD ["./mondoowebapp-amd64-alpine"]
 
