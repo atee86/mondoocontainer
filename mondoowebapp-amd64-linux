@@ -1,0 +1,14 @@
+FROM alpine:latest
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the built Go binary from the builder stage
+COPY bin/mondoowebapp-amd64-linux /app
+
+# Expose the port the application runs on
+EXPOSE 80
+
+# Command to run the Go application
+CMD ["./mondoowebapp-amd64-linux"]
+
