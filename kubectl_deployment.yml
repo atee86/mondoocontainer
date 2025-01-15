@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mondoowebapp-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mondoowebapp-amd64-alpine
+  template:
+    metadata:
+      labels:
+        app: mondoowebapp-amd64-alpine
+    spec:
+      containers:
+      - name: mondoowebapp-amd64-alpine
+        image: ghcr.io/atee86/mondoowebapp-amd64-alpine:latest
+        ports:
+        - containerPort: 4733
+        resources: 
+          limits: 
+            memory: "512Mi" 
+            cpu: "500m" 
+          requests: 
+            memory: "256Mi" 
+            cpu: "250m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mondoowebapp-service
+spec:
+  selector:
+    app: mondoowebapp-amd64-alpine
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 4733
+  type: LoadBalancer
