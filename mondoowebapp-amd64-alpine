@@ -7,7 +7,7 @@ WORKDIR /app
 COPY bin/mondoowebapp-amd64-alpine /app
 
 # Expose the port the application runs on
-EXPOSE 80
+EXPOSE 4733
 
 # Command to run the Go application
 CMD ["./mondoowebapp-amd64-alpine"]
